@@ -20,7 +20,21 @@ class TiketController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->all();
+        $rules = [
+            'nama' => 'required',
+            'nik' => 'required',
+            'telpon' => 'required',
+            'negara' => 'required',
+            'provinsi' => 'required',
+            'kota' => 'required',
+            'alamat' => 'required',
+            'umur' => 'required',
+            'tanggalkeb' => 'required',
+            'tempat' => 'required',
+            'jumlah' => 'required',
+            'user_id' => 'required'
+        ];
+        $data = $request->validate($rules);
         Tiket::create($data);
         return redirect('user/account');
     }
